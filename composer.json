@@ -1,0 +1,15 @@
+{
+    "name": "ilkaynarli/turkcell-fastlogin",
+    "description": "Php client for Turkcell FastLogin",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "authors": [
+        {
+            "name": "İlkay Narlı",
+            "email": "ilkaynarli@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
