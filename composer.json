@@ -1,6 +1,6 @@
 {
     "name": "ilkaynarli/turkcell-fastlogin",
-    "description": "Php client for Turkcell FastLogin",
+    "description": "You can easily connect to Akbank API Client with PHP",
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^6.3"
@@ -11,5 +11,10 @@
             "email": "ilkaynarli@gmail.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "TurkcellFastLogin\\": "src/"
+        }
+    }
 }
