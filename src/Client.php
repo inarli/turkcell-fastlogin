@@ -27,6 +27,7 @@ class Client
     public function __construct ($options = [])
     {
         $clientOptions = [
+            'exceptions' => false,
             'timeout'   => 10.0,
             'base_uri'  => 'https://mobcon.turkcell.com.tr/mobileconnect'
         ];
