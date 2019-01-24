@@ -3,6 +3,8 @@
     "description": "You can easily connect to Akbank API Client with PHP",
     "type": "library",
     "require": {
+        "php": "^5.6",
+        "ext-json": "*",
         "guzzlehttp/guzzle": "^6.3"
     },
     "authors": [

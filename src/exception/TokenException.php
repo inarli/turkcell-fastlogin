@@ -13,7 +13,7 @@ namespace TurkcellFastLogin\Exception;
  *
  * @package TurkcellFastLogin\Exception
  */
-class TokenException extends \Exception
+class TokenException extends \RuntimeException
 {
 
 }
