@@ -38,7 +38,7 @@ class FastLogin extends Client {
                 'Access-Control-Allow-Origin' => 'mobcon.turkcell.com.tr',
                 'Accept' => 'text/plain, application/json, application/json, application/*+json, application/*+json, text/plain, */*, */*'
             ],
-            'body' => [
+            'form_params' => [
                 'Authorizationcode' => $code,
                 'grant_type' => 'authorization_code',
                 'redirect_uri' => urlencode($redirectUrl)

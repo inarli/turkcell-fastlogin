@@ -15,7 +15,7 @@ use Psr\Http\Message\ResponseInterface;
  *
  * @package TurkcellFastLogin\Model
  */
-class UserInfo
+class UserInfo extends Base
 {
     /**
      * PCR stands for "Pseudonymous Customer Reference".
@@ -69,12 +69,10 @@ class UserInfo
      */
     public function __construct (ResponseInterface $response)
     {
-        if ($response->getStatusCode() !== 200) {
-            throw new \Exception();
-        }
+        parent::__construct($response);
 
         $contents = $response->getBody()->getContents();
-        $userInfo = json_decode($contents);
+        $userInfo = json_decode($contents, true);
 
         $this->setSub($userInfo['sub']);
         $this->setUpdatedAt($userInfo['updated_at']);

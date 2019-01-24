@@ -6,6 +6,7 @@
  * @author    İlkay Narlı <ilkaynarli@gmail.com>
  */
 namespace TurkcellFastLogin\Model;
+
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -13,7 +14,7 @@ use Psr\Http\Message\ResponseInterface;
  *
  * @package TurkcellFastLogin\Model
  */
-class Auth
+class Auth extends Base
 {
     /**
      * OAuth 2.0 access_token, used to get the UserInfo object
@@ -55,12 +56,11 @@ class Auth
      */
     public function __construct (ResponseInterface $response)
     {
-        if ($response->getStatusCode() !== 200) {
-            throw new \Exception();
-        }
+        parent::__construct($response);
+
         $contents = $response->getBody()->getContents();
-        $tokenData = json_decode($contents);
-        $this->setAccessToken($tokenData['token_data']);
+        $tokenData = json_decode($contents, true);
+        $this->setAccessToken($tokenData['access_token']);
         $this->setTokenType($tokenData['token_type']);
         $this->setExpiresnIn($tokenData['expires_in']);
         $this->setScope($tokenData['scope']);
