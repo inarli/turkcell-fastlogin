@@ -14,7 +14,15 @@ use TurkcellFastLogin\Exception\ApiHttpException;
 
 class Base
 {
-    public function __construct (ResponseInterface $response)
+    protected function __construct()
+    {
+    }
+
+    /**
+     * @param ResponseInterface $response
+     * @throws ApiHttpException
+     */
+    public static function createFromResponse(ResponseInterface $response)
     {
         if ($response->getStatusCode() !== 200) {
             throw new ApiHttpException(sprintf('Turkcell FastLogin Api Returned Exception. Code : %s', $response->getStatusCode()));

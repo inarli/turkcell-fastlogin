@@ -13,7 +13,7 @@ namespace TurkcellFastLogin\Exception;
  *
  * @package TurkcellFastLogin\Exception
  */
-class ApiHttpException extends \Exception
+class ApiHttpException extends \RuntimeException
 {
 
 }

@@ -33,7 +33,7 @@ class Auth extends Base
      * Expiration time in seconds from the time of generation of the response
      * @var string
      */
-    private $expiresnIn;
+    private $expiresIn;
     /**
      *
      * @var string
@@ -48,105 +48,113 @@ class Auth extends Base
     private $idToken;
 
     /**
-     * Auth constructor.
+     * Auth constructor
      *
      * @param \Psr\Http\Message\ResponseInterface $response
      *
-     * @throws \Exception
+     * @return Auth
      */
-    public function __construct (ResponseInterface $response)
+    public static function createFromResponse(ResponseInterface $response)
     {
-        parent::__construct($response);
+        parent::createFromResponse($response);
+
+        $object = new self();
 
         $contents = $response->getBody()->getContents();
         $tokenData = json_decode($contents, true);
-        $this->setAccessToken($tokenData['access_token']);
-        $this->setTokenType($tokenData['token_type']);
-        $this->setExpiresnIn($tokenData['expires_in']);
-        $this->setScope($tokenData['scope']);
-        $this->setIdToken($tokenData['id_token']);
+        $object->setAccessToken($tokenData['access_token']);
+        $object->setTokenType($tokenData['token_type']);
+        $object->setExpiresIn($tokenData['expires_in']);
+        $object->setScope($tokenData['scope']);
+        $object->setIdToken($tokenData['id_token']);
+
+        return $object;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAccessToken ()
+    public function getAccessToken()
     {
         return $this->accessToken;
     }
 
     /**
-     * @param mixed $accessToken
+     * @param string $accessToken
      *
      * @return Auth
      */
-    public function setAccessToken ($accessToken)
+    public function setAccessToken($accessToken)
     {
         $this->accessToken = $accessToken;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getTokenType ()
+    public function getTokenType()
     {
         return $this->tokenType;
     }
 
     /**
-     * @param mixed $tokenType
+     * @param string $tokenType
      *
      * @return Auth
      */
-    public function setTokenType ($tokenType)
+    public function setTokenType($tokenType)
     {
         $this->tokenType = $tokenType;
+
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getExpiresnIn ()
+    public function getExpiresIn()
     {
-        return $this->expiresnIn;
+        return $this->expiresIn;
     }
 
     /**
-     * @param mixed $expiresnIn
+     * @param mixed $expiresIn
      *
      * @return Auth
      */
-    public function setExpiresnIn ($expiresnIn)
+    public function setExpiresIn($expiresIn)
     {
-        $this->expiresnIn = $expiresnIn;
+        $this->expiresIn = $expiresIn;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getScope ()
+    public function getScope()
     {
         return $this->scope;
     }
 
     /**
-     * @param mixed $scope
+     * @param string $scope
      *
      * @return Auth
      */
-    public function setScope ($scope)
+    public function setScope($scope)
     {
         $this->scope = $scope;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getIdToken ()
+    public function getIdToken()
     {
         return $this->idToken;
     }
@@ -156,11 +164,10 @@ class Auth extends Base
      *
      * @return Auth
      */
-    public function setIdToken ($idToken)
+    public function setIdToken($idToken)
     {
         $this->idToken = $idToken;
+
         return $this;
     }
-
-
 }

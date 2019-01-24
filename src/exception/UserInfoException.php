@@ -9,7 +9,7 @@
 namespace TurkcellFastLogin\Exception;
 
 
-class UserInfoException extends \Exception
+class UserInfoException extends \RuntimeException
 {
 
 }

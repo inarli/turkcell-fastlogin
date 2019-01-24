@@ -9,6 +9,7 @@
 namespace TurkcellFastLogin\Model;
 
 use Psr\Http\Message\ResponseInterface;
+use TurkcellFastLogin\Exception\ApiHttpException;
 
 /**
  * Class UserInfo
@@ -65,186 +66,198 @@ class UserInfo extends Base
      *
      * @param \Psr\Http\Message\ResponseInterface $response
      *
-     * @throws \Exception
+     * @return UserInfo
      */
-    public function __construct (ResponseInterface $response)
+    public static function createFromResponse(ResponseInterface $response)
     {
-        parent::__construct($response);
+        parent::createFromResponse($response);
 
         $contents = $response->getBody()->getContents();
         $userInfo = json_decode($contents, true);
 
-        $this->setSub($userInfo['sub']);
-        $this->setUpdatedAt($userInfo['updated_at']);
+        $object = new self();
+
+        $object->setSub($userInfo['sub']);
+        $object->setUpdatedAt($userInfo['updated_at']);
         if (!empty($userInfo['phone_number'])){
-            $this->setPhoneNumber($userInfo['phone_number']);
+            $object->setPhoneNumber($userInfo['phone_number']);
         }
         if (!empty($userInfo['phone_number_verified'])){
-            $this->setPhoneNumberVerified($userInfo['phone_number_verified']);
+            $object->setPhoneNumberVerified($userInfo['phone_number_verified']);
         }
         if (!empty($userInfo['name'])){
-            $this->setName($userInfo['name']);
+            $object->setName($userInfo['name']);
         }
         if (!empty($userInfo['family_name'])) {
-            $this->setFamilyName($userInfo['family_name']);
+            $object->setFamilyName($userInfo['family_name']);
         }
         if (!empty($userInfo['email'])) {
-            $this->setEmail($userInfo['email']);
+            $object->setEmail($userInfo['email']);
         }
         if (!empty($userInfo['email_verified'])) {
-            $this->setEmailVerified($userInfo['email_verified']);
+            $object->setEmailVerified($userInfo['email_verified']);
         }
+
+        return $object;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getSub ()
+    public function getSub()
     {
         return $this->sub;
     }
 
     /**
-     * @param mixed $sub
+     * @param string $sub
      *
      * @return UserInfo
      */
-    public function setSub ($sub)
+    public function setSub($sub)
     {
         $this->sub = $sub;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getUpdatedAt ()
+    public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
 
     /**
-     * @param mixed $updatedAt
+     * @param string $updatedAt
      *
      * @return UserInfo
      */
-    public function setUpdatedAt ($updatedAt)
+    public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPhoneNumber ()
+    public function getPhoneNumber()
     {
         return $this->phoneNumber;
     }
 
     /**
-     * @param mixed $phoneNumber
+     * @param string $phoneNumber
      *
      * @return UserInfo
      */
-    public function setPhoneNumber ($phoneNumber)
+    public function setPhoneNumber($phoneNumber)
     {
         $this->phoneNumber = $phoneNumber;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
-    public function getPhoneNumberVerified ()
+    public function getPhoneNumberVerified()
     {
         return $this->phoneNumberVerified;
     }
 
     /**
-     * @param mixed $phoneNumberVerified
+     * @param boolean $phoneNumberVerified
      *
      * @return UserInfo
      */
-    public function setPhoneNumberVerified ($phoneNumberVerified)
+    public function setPhoneNumberVerified($phoneNumberVerified)
     {
         $this->phoneNumberVerified = $phoneNumberVerified;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName ()
+    public function getName()
     {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      *
      * @return UserInfo
      */
-    public function setName ($name)
+    public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getFamilyName ()
+    public function getFamilyName()
     {
         return $this->familyName;
     }
 
     /**
-     * @param mixed $familyName
+     * @param string $familyName
      *
      * @return UserInfo
      */
-    public function setFamilyName ($familyName)
+    public function setFamilyName($familyName)
     {
         $this->familyName = $familyName;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getEmail ()
+    public function getEmail()
     {
         return $this->email;
     }
 
     /**
-     * @param mixed $email
+     * @param string $email
      *
      * @return UserInfo
      */
-    public function setEmail ($email)
+    public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
-    public function getEmailVerified ()
+    public function getEmailVerified()
     {
         return $this->emailVerified;
     }
 
     /**
-     * @param mixed $emailVerified
+     * @param boolean $emailVerified
      *
      * @return UserInfo
      */
-    public function setEmailVerified ($emailVerified)
+    public function setEmailVerified($emailVerified)
     {
         $this->emailVerified = $emailVerified;
+
         return $this;
     }
 
