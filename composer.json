@@ -1,6 +1,6 @@
 {
-    "name": "ilkaynarli/turkcell-fastlogin",
-    "description": "You can easily connect to Akbank API Client with PHP",
+    "name": "inarli/turkcell-fastlogin",
+    "description": "You can easily connect to Turkcell FastLogin API Client with PHP",
     "type": "library",
     "require": {
         "php": "^5.6",
