@@ -97,6 +97,7 @@ class Client
         ];
         try{
             $response = $this->client->request('GET', '/userinfo', $options);
+            $response = $this->client->request('GET', '/userinfo', $option);
         } catch (ClientException $e) {
             throw new ApiHttpException('An error occurred while getting user information', $e->getCode(), $e);
         } catch (GuzzleException $e) {
