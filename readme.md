@@ -1,3 +1,8 @@
 # Php Client For Turkcell FastLogin API
 You can easily connect to Turkcell FastLogin API Client with PHP
+
 API Documentation : https://hizligiris.turkcell.com.tr/fast-login/what-is-fast-login
+
+### Quality Metrics:
+
+You can check quality of library from sonarcloud: https://sonarcloud.io/dashboard?id=inarli_turkcell-fastlogin
