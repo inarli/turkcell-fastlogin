@@ -25,7 +25,8 @@ class Base
     public static function createFromResponse(ResponseInterface $response)
     {
         if ($response->getStatusCode() !== 200) {
-            throw new ApiHttpException(sprintf('Turkcell FastLogin Api Returned Exception. Code : %s', $response->getStatusCode()));
+            $error = new Error($response->getBody()->getContents());
+            throw new ApiHttpException($error->getExceptionMessage(), $response->getStatusCode());
         }
     }
 }

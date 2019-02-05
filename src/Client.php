@@ -65,7 +65,7 @@ class Client
                 'Accept' => 'text/plain, application/json, application/json, application/*+json, application/*+json, text/plain, */*, */*'
             ],
             'form_params' => [
-                'Authorizationcode' => $code,
+                'code' => $code,
                 'grant_type' => 'authorization_code',
                 'redirect_uri' => urlencode($redirectUrl)
             ]
