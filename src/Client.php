@@ -39,7 +39,7 @@ class Client
         $clientOptions = [
             'exceptions' => false,
             'timeout'   => 10.0,
-            'base_uri'  => 'https://mobcon.turkcell.com.tr/mobileconnect'
+            'base_uri'  => 'https://mobcon.turkcell.com.tr/'
         ];
         if (!empty($options)) {
             $clientOptions = array_merge($clientOptions, $options);
@@ -71,7 +71,7 @@ class Client
             ]
         ];
         try {
-            $response = $this->client->request('POST', '/oauth/token', $options);
+            $response = $this->client->request('POST', 'mobileconnect/oauth/token', $options);
         } catch (ClientException $e) {
             throw new ApiHttpException('An error occurred while getting token', $e->getCode(), $e);
         } catch (GuzzleException $e) {
@@ -96,7 +96,7 @@ class Client
             ]
         ];
         try{
-            $response = $this->client->request('GET', '/userinfo', $options);
+            $response = $this->client->request('GET', 'mobileconnect/userinfo', $options);
         } catch (ClientException $e) {
             throw new ApiHttpException('An error occurred while getting user information', $e->getCode(), $e);
         } catch (GuzzleException $e) {
