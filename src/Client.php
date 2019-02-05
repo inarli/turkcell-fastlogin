@@ -67,7 +67,7 @@ class Client
             'form_params' => [
                 'code' => $code,
                 'grant_type' => 'authorization_code',
-                'redirect_uri' => urlencode($redirectUrl)
+                'redirect_uri' => $redirectUrl
             ]
         ];
         try {
