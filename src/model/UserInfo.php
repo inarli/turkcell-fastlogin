@@ -77,8 +77,12 @@ class UserInfo extends Base
 
         $object = new self();
 
-        $object->setSub($userInfo['sub']);
-        $object->setUpdatedAt($userInfo['updated_at']);
+        if (!empty($userInfo['sub'])) {
+            $object->setSub($userInfo['sub']);
+        }
+        if (!empty($userInfo['updated_at'])) {
+            $object->setUpdatedAt($userInfo['updated_at']);
+        }
         if (!empty($userInfo['phone_number'])){
             $object->setPhoneNumber($userInfo['phone_number']);
         }
