@@ -3,7 +3,7 @@
     "description": "You can easily connect to Turkcell FastLogin API Client with PHP",
     "type": "library",
     "require": {
-        "php": "^5.6",
+        "php": ">=5.6",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^6.3"
     },
